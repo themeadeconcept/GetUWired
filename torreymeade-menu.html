@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Dropdown Menu | Torrey Meade | GetUWired</title>
+    <style>
+      /* Google font (Noto Sans?) */
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+      /* Color Variables */
+      :root {
+        --primary-color: #29c18e;
+        --secondary-color: #009563;
+      }
+
+      /* HTML Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Noto Sans KR", sans-serif;
+      }
+
+      /* no-scroll */
+      body {
+        overflow: hidden;
+      }
+
+      /* Navigation bar */
+      nav {
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        align-items: center;
+        padding: 0 6rem 0 6rem;
+        border-bottom: 0.4rem solid var(--primary-color);
+        width: 100%;
+      }
+
+      /* GETUWIRED LOGO */
+      nav #logo {
+        font-weight: bold;
+        font-size: 2rem;
+        letter-spacing: 0.2rem;
+        margin-left: 8rem;
+      }
+
+      /* Get rid of bullets and list items (links) display flexbox */
+      #navbar ul {
+        list-style-type: none;
+        display: flex;
+      }
+
+      /* Navigation links */
+      #navbar ul li {
+        margin: 1.5rem 2rem 0 4rem;
+        padding: 0.2rem 0.5rem 1.4rem 0.5rem;
+        position: relative;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        font-size: 1.1rem;
+        letter-spacing: 0.1rem;
+      }
+
+      /* Changes the color of the actual links */
+      #navbar ul li a {
+        color: #333;
+        text-decoration: none;
+      }
+
+      /* Initially hides my nested UL's (unordered lists) */
+      #navbar ul li ul {
+        display: none;
+        background: var(--primary-color);
+        text-shadow: 1px 1px #343434;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+      }
+
+      /* Styles the inner drop-down links */
+      #navbar ul li ul li {
+        padding: 1rem 1.8rem 1rem 1.8rem;
+        margin: -0.4rem 0 0.2rem 0;
+        border-top: 0.4rem solid var(--primary-color);
+        white-space: nowrap;
+        width: 100%;
+      }
+
+      /* This fixes the bottom margin of the last hidden drop-down links */
+      #navbar ul li ul li:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Styles the actual hidden links */
+      #navbar ul li ul a {
+        color: #fff;
+        font-size: 0.8rem;
+        font-weight: bold;
+        letter-spacing: 0.2rem;
+      }
+
+      /* Keeps top links background color the same as hidden drop-down */
+      #navbar ul li:hover {
+        background: var(--primary-color);
+      }
+
+      /* Sets my the background hover color of nested UL links */
+      #navbar ul li ul li:hover {
+        cursor: pointer;
+        background: var(--secondary-color);
+      }
+
+      /* Shows my nested dropdown menu */
+      #navbar ul li:hover ul {
+        display: block;
+        position: absolute;
+        left: 0;
+        margin-top: 1.8rem;
+      }
+
+      /* Styles photo for bottom showcase */
+      #showcase {
+        background: url("http://www.getuwired.com/devtest/Death_to_stock_photography_Vibrant.jpg")
+          no-repeat center center/cover;
+        height: 113vh;
+      }
+
+      /* The following is added responsiveness - Wasn't sure if this was required, but figured it could give you a little bit more of my skillset? */
+
+      @media only screen and (max-width: 1366px) {
+        nav {
+          padding: 0 1rem 0rem 1rem;
+        }
+
+        nav #logo {
+          font-size: 2.5rem;
+          margin-left: 5rem;
+        }
+
+        #navbar ul li {
+          font-size: 1.5rem;
+          margin: 2rem 0.5rem 0 2rem;
+        }
+
+        #navbar ul li ul li {
+          font-size: 0.8rem;
+        }
+      }
+
+      @media only screen and (max-width: 1024px) {
+        nav #logo {
+          font-size: 2.5rem;
+          margin-left: 2rem;
+        }
+
+        #navbar ul li {
+          margin: 1.5rem 0 0 1.5rem;
+          font-size: 1.2rem;
+        }
+
+        #navbar ul li ul li {
+          font-size: 0.8rem;
+        }
+
+        #showcase {
+          height: 100vh;
+        }
+      }
+
+      @media only screen and (max-width: 812px) {
+        /* Allows scrolling on smaller screens due to "Product tab" */
+        body {
+          overflow: scroll;
+        }
+
+        nav {
+          padding: 0 0.5rem 0 0.5rem;
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+
+        nav #logo {
+          margin-left: 2rem;
+          font-size: 1.5rem;
+        }
+
+        #navbar ul li {
+          margin: 1.5rem 0 0 0;
+          font-size: 1rem;
+          letter-spacing: 0.1rem;
+        }
+
+        #navbar ul li ul a {
+          font-size: 0.7rem;
+        }
+
+        #showcase {
+          height: 150vh;
+        }
+      }
+
+      /* On the smaller screens, I added a little flare, and switched the menu to a column menu for a better UI/UX experience. */
+
+      @media only screen and (max-width: 414px) {
+        body {
+          overflow: scroll;
+        }
+
+        nav {
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+        }
+
+        nav ul {
+          display: flex;
+          flex-direction: column;
+          padding: 0;
+        }
+
+        #navbar ul li {
+          font-size: 1.2rem;
+          margin: 0;
+          padding: 0.8rem 1rem 0.8rem 1rem;
+        }
+
+        #navbar ul li:hover {
+          background-color: transparent;
+        }
+
+        #navbar ul li ul {
+          width: 100%;
+        }
+
+        #navbar ul li ul li {
+          font-size: 0.9rem;
+          margin: 0;
+        }
+
+        /* Top and bottom borders to distinguish that the drop-down belongs to the clicked link */
+        #navbar ul li ul li:first-child {
+          border-top: 1px solid #343434;
+        }
+
+        #navbar ul li ul li:last-child {
+          border-bottom: 1px solid #343434;
+        }
+
+        nav #logo {
+          margin-left: 0;
+          font-size: 2.5rem;
+          padding: 1rem 0 0 0;
+          border-bottom: 1px solid #343434;
+        }
+
+        #navbar ul li:hover ul {
+          display: block;
+          position: relative;
+          left: 0;
+          right: 0;
+          margin-top: 1.8rem;
+          width: 100vw;
+        }
+
+        #showcase {
+          height: 60vh;
+        }
+
+        /* Allows scrolling on smaller screens */
+        ::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+
+    <nav id="navbar">
+      <div id="logo" class="logo"><p>GETUWIRED</p></div>
+      <div id="links">
+        <ul>
+          <li class="about">
+            <a href="#">ABOUT</a>
+            <ul>
+              <li><a href="#">OUR STORY</a></li>
+              <li><a href="#">OUR COMMITMENT TO YOU</a></li>
+            </ul>
+          </li>
+          <li class="locations">
+            <a href="#">LOCATIONS</a>
+            <ul>
+              <li><a href="#">AUSTIN, TX</a></li>
+              <li><a href="#">ATLANTA, GA</a></li>
+              <li><a href="#">SEATTLE, WA</a></li>
+              <li><a href="#">PORTLAND, OR</a></li>
+            </ul>
+          </li>
+          <li class="products">
+            <a href="#">PRODUCTS</a>
+            <ul>
+              <li><a href="#">NEW ARRIVALS</a></li>
+              <li><a href="#">FEATURED</a></li>
+              <li><a href="#">TOP RATED</a></li>
+              <li><a href="#">HIS</a></li>
+              <li><a href="#">HERS</a></li>
+              <li><a href="#">KIDS</a></li>
+              <li><a href="#">ACCESSORIES</a></li>
+              <li><a href="#">SPRING CATALOG</a></li>
+              <li><a href="#">THE ESSENTIALS</a></li>
+              <li><a href="#">SALE</a></li>
+            </ul>
+          </li>
+          <li class="blog"><a href="#">BLOG</a></li>
+          <li class="contact"><a href="#">CONTACT</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <header id="showcase"></header>
+  </body>
+</html>
